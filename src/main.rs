@@ -25,9 +25,9 @@ use rand::Rng;
 lazy_static! {
     static ref FILES: HashMap<&'static str, Vec<u8>> = {
         HashMap::from([
-            ("dab.png", include_bytes!("dab.png").to_vec()),
-            ("smug.png", include_bytes!("smug.png").to_vec()),
-            ("aqua.webp", include_bytes!("aqua.webp").to_vec()),
+            ("img/dab.png", include_bytes!("img/dab.png").to_vec()),
+            ("img/smug.png", include_bytes!("img/smug.png").to_vec()),
+            ("img/aqua.webp", include_bytes!("img/aqua.webp").to_vec()),
         ])
     };
 }
