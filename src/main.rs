@@ -22,6 +22,10 @@ use hyper::{Body, Request, Response, Result, Server, StatusCode};
 use lazy_static::{__Deref, lazy_static};
 use rand::Rng;
 
+#[cfg(all(target_env = "musl", target_pointer_width = "64"))]
+#[global_allocator]
+static ALLOC: jemallocator::Jemalloc = jemallocator::Jemalloc;
+
 lazy_static! {
     static ref FILES: HashMap<&'static str, Vec<u8>> = {
         HashMap::from([

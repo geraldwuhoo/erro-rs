@@ -10,3 +10,10 @@ hyper = { version = "0.14", features = ["full"] }
 tokio = { version = "1", features = ["full"] }
 rand = "0.8"
 lazy_static = "1"
+
+[profile.release]
+lto = true
+codegen-units = 1
+
+[target.'cfg(all(target_env = "musl", target_pointer_width = "64"))'.dependencies.jemallocator]
+version = "0.3"

@@ -1,9 +1,13 @@
 # Builder
-FROM docker.io/library/rust:1.58-alpine3.15 AS builder
+FROM docker.io/library/rust:1.59 AS builder
 WORKDIR /usr/src
 COPY . .
-RUN apk --no-cache add libc-dev && \
-    cargo install --target x86_64-unknown-linux-musl --path .
+RUN rustup target add x86_64-unknown-linux-musl && \
+    apt update && \
+    apt install -y musl-tools musl-dev && \
+    rm -rf /var/lib/apt/lists/* && \
+    cargo install --target x86_64-unknown-linux-musl --path . && \
+    strip -s /usr/local/cargo/bin/erro-rs
 
 # Clean image
 FROM scratch
