@@ -27,11 +27,11 @@ use rand::Rng;
 static ALLOC: jemallocator::Jemalloc = jemallocator::Jemalloc;
 
 lazy_static! {
-    static ref FILES: HashMap<&'static str, Vec<u8>> = {
+    static ref FILES: HashMap<&'static str, &'static [u8]> = {
         HashMap::from([
-            ("img/dab.png", include_bytes!("img/dab.png").to_vec()),
-            ("img/smug.png", include_bytes!("img/smug.png").to_vec()),
-            ("img/aqua.webp", include_bytes!("img/aqua.webp").to_vec()),
+            ("img/dab.png", &include_bytes!("img/dab.png")[..]),
+            ("img/smug.png", &include_bytes!("img/smug.png")[..]),
+            ("img/aqua.webp", &include_bytes!("img/aqua.webp")[..]),
         ])
     };
 }
